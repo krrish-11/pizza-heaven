@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Pizza Heaven | Kharghar, Navi Mumbai</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --red: #B3261E;
+    --red-deep: #8C1D17;
+    --charcoal: #1C1714;
+    --charcoal-soft: #2A211C;
+    --cream: #FBF4EA;
+    --gold: #D89A3E;
+    --line: rgba(28,23,20,0.12);
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    font-family:'Work Sans', sans-serif;
+    color:var(--charcoal);
+    background:var(--cream);
+    line-height:1.6;
+  }
+
+  h1,h2,h3,.display-font{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+
+  a{ text-decoration:none; }
+
+  /* ---------- NAVBAR ---------- */
+  .navbar-pizza{
+    background:var(--charcoal);
+    padding:.9rem 0;
+    transition: padding .25s ease;
+  }
+  .navbar-pizza .navbar-brand{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:1.4rem;
+    color:var(--cream);
+  }
+  .navbar-pizza .navbar-brand span{ color: var(--gold); }
+  .navbar-pizza .nav-link{
+    color:rgba(251,244,234,.8);
+    font-weight:500;
+    margin:0 .5rem;
+    position:relative;
+  }
+  .navbar-pizza .nav-link:hover,
+  .navbar-pizza .nav-link:focus-visible{ color:var(--cream); outline:none; }
+  .navbar-pizza .nav-link::after{
+    content:"";
+    position:absolute; left:0; bottom:-2px;
+    width:0; height:2px; background:var(--red);
+    transition:width .2s ease;
+  }
+  .navbar-pizza .nav-link:hover::after{ width:100%; }
+  .btn-order-nav{
+    background:var(--red);
+    color:#fff;
+    border-radius:2px;
+    padding:.5rem 1.2rem;
+    font-weight:600;
+    border:none;
+  }
+  .btn-order-nav:hover{ background:var(--red-deep); color:#fff; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:92vh;
+    display:flex;
+    align-items:center;
+    background:
+      linear-gradient(100deg, rgba(15,11,9,.92) 0%, rgba(15,11,9,.72) 45%, rgba(15,11,9,.45) 100%),
+      url('https://images.unsplash.com/photo-1548365328-9f547fb0953b?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+  }
+  .hero .eyebrow-mark{
+    width:42px; height:3px; background:var(--gold); display:inline-block; margin-bottom:1.2rem;
+  }
+  .hero h1{
+    color:#fff;
+    font-size:clamp(2.4rem, 6vw, 4.2rem);
+    line-height:1.05;
+    max-width:11ch;
+  }
+  .hero p.lead{
+    color:rgba(251,244,234,.85);
+    max-width:46ch;
+    font-size:1.15rem;
+    margin-top:1.2rem;
+  }
+  .btn-hero-primary{
+    background:var(--red);
+    border:none;
+    color:#fff;
+    padding:.85rem 1.9rem;
+    font-weight:600;
+    border-radius:2px;
+    transition: transform .18s ease, background .18s ease;
+  }
+  .btn-hero-primary:hover{ background:var(--red-deep); color:#fff; transform:translateY(-2px); }
+  .btn-hero-outline{
+    background:transparent;
+    border:1.5px solid rgba(251,244,234,.6);
+    color:#fff;
+    padding:.85rem 1.9rem;
+    font-weight:600;
+    border-radius:2px;
+    transition: all .18s ease;
+  }
+  .btn-hero-outline:hover{ border-color:#fff; background:rgba(255,255,255,.08); color:#fff; transform:translateY(-2px); }
+
+  /* ---------- SECTION SPACING ---------- */
+  section{ padding:5.5rem 0; }
+  .section-heading{
+    font-size:clamp(1.9rem, 3.5vw, 2.6rem);
+    margin-bottom:1rem;
+  }
+  .section-rule{
+    width:56px; height:3px; background:var(--red); margin-bottom:1.5rem;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-wrap p{
+    font-size:1.08rem;
+    max-width:62ch;
+    color:#3a322c;
+  }
+  .about-stats{
+    border-top:1px solid var(--line);
+    margin-top:2.5rem;
+    padding-top:2rem;
+  }
+  .about-stats .stat-num{
+    font-family:'Fraunces', serif;
+    font-size:2.2rem;
+    color:var(--red);
+    font-weight:600;
+  }
+  .about-stats .stat-label{
+    font-size:.92rem;
+    color:#5a5048;
+  }
+
+  /* ---------- MENU ---------- */
+  .menu-section{ background:var(--charcoal); color:var(--cream); }
+  .menu-section .section-heading{ color:#fff; }
+  .menu-section .section-sub{ color:rgba(251,244,234,.65); max-width:52ch; }
+
+  .filter-bar{
+    display:flex; flex-wrap:wrap; gap:.6rem; margin:2.2rem 0 2.6rem;
+  }
+  .filter-btn{
+    background:transparent;
+    border:1px solid rgba(251,244,234,.3);
+    color:rgba(251,244,234,.85);
+    padding:.5rem 1.15rem;
+    border-radius:2px;
+    font-weight:500;
+    font-size:.92rem;
+    transition: all .2s ease;
+  }
+  .filter-btn:hover{ border-color:var(--gold); color:#fff; }
+  .filter-btn.active{
+    background:var(--red);
+    border-color:var(--red);
+    color:#fff;
+  }
+
+  .menu-card{
+    background:var(--charcoal-soft);
+    border:1px solid rgba(251,244,234,.08);
+    border-radius:3px;
+    padding:1.6rem;
+    height:100%;
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+  }
+  .menu-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 34px rgba(0,0,0,.4);
+    border-color:rgba(216,154,62,.4);
+  }
+  .menu-card .tag-dot{
+    width:9px; height:9px; border-radius:50%; display:inline-block; margin-right:.4rem;
+  }
+  .tag-dot.veg{ background:#5FA458; }
+  .tag-dot.nonveg{ background:var(--red); }
+  .tag-dot.bev{ background:var(--gold); }
+  .menu-card .item-name{
+    font-family:'Fraunces', serif;
+    font-size:1.18rem;
+    font-weight:600;
+    color:#fff;
+    margin:.6rem 0 .4rem;
+  }
+  .menu-card .item-desc{
+    font-size:.9rem;
+    color:rgba(251,244,234,.6);
+    min-height:2.6rem;
+  }
+  .menu-card .item-foot{
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:1rem; padding-top:1rem;
+    border-top:1px solid rgba(251,244,234,.08);
+  }
+  .menu-card .item-price{
+    font-weight:600; color:var(--gold); font-family:'Fraunces', serif; font-size:1.05rem;
+  }
+  .menu-item-hidden{ display:none; }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  /* ---------- TESTIMONIALS ---------- */
+  .rating-strip{
+    background:var(--cream);
+    padding:3.5rem 0 2.5rem;
+    border-bottom:1px solid var(--line);
+  }
+  .rating-badge{
+    display:flex; align-items:baseline; gap:.6rem; margin-bottom:2rem;
+  }
+  .rating-badge .num{
+    font-family:'Fraunces', serif;
+    font-size:2.6rem;
+    font-weight:600;
+    color:var(--red);
+  }
+  .rating-badge .stars{ color:var(--gold); letter-spacing:2px; }
+  .rating-badge .count{ font-size:.9rem; color:#5a5048; }
+
+  .review-card{
+    border-left:2px solid var(--red);
+    padding-left:1.1rem;
+    height:100%;
+  }
+  .review-card p{
+    font-size:.96rem;
+    color:#3a322c;
+    margin-bottom:.5rem;
+  }
+  .review-card .reviewer{
+    font-size:.85rem;
+    color:#8a7f75;
+    font-weight:500;
+  }
+
+  .contact-section{ background:var(--cream); }
+  .info-line{
+    display:flex; gap:.85rem; margin-bottom:1.1rem; align-items:flex-start;
+  }
+  .info-line .ic{
+    width:34px; height:34px; flex:0 0 34px;
+    background:rgba(179,38,30,.1);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    color:var(--red);
+  }
+  .info-line .txt{ font-size:.96rem; color:#3a322c; }
+
+  .form-control{
+    border-radius:2px;
+    border:1px solid var(--line);
+    padding:.7rem .9rem;
+  }
+  .form-control:focus{
+    border-color:var(--red);
+    box-shadow:0 0 0 .2rem rgba(179,38,30,.12);
+  }
+  .btn-send{
+    background:var(--charcoal);
+    color:#fff;
+    border:none;
+    padding:.75rem 1.8rem;
+    border-radius:2px;
+    font-weight:600;
+  }
+  .btn-send:hover{ background:var(--red); color:#fff; }
+
+  footer.site-footer{
+    background:var(--charcoal);
+    color:rgba(251,244,234,.55);
+    padding:1.6rem 0;
+    font-size:.88rem;
+    text-align:center;
+  }
+
+  #formStatus{ font-size:.9rem; }
+
+  @media (max-width: 767px){
+    section{ padding:3.6rem 0; }
+    .hero{ min-height:88vh; text-align:left; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .menu-card, .btn-hero-primary, .btn-hero-outline{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<nav class="navbar navbar-expand-lg navbar-pizza sticky-top">
+  <div class="container">
+    <a class="navbar-brand" href="#home">Pizza <span>Heaven</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="#menu">Menu</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item mt-2 mt-lg-0 ms-lg-2">
+          <a class="btn btn-order-nav" href="tel:+917738382027">Call to Order</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header id="home" class="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <span class="eyebrow-mark"></span>
+        <h1>A Slice of Paradise in Kharghar</h1>
+        <p class="lead">Fast food done right — gourmet pizzas, juicy burgers and comfort bites, made fresh daily in Sector 19.</p>
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a href="#menu" class="btn btn-hero-primary">View Menu</a>
+          <a href="tel:+917738382027" class="btn btn-hero-outline">Order Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="about-wrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="section-rule"></div>
+        <h2 class="section-heading">About The Pizza Heaven</h2>
+        <p>The Pizza Heaven is a local favorite tucked into Sector 19, Kharghar — the kind of place regulars walk to without checking the menu first. We serve mouth-watering quick bites, gourmet pizzas, delectable pastas, and scrumptious wraps, each one crafted with genuine passion rather than a shortcut. Whether you're grabbing a quick bite between errands or settling in for a proper meal, we keep it fresh, fast, and full of flavor.</p>
+
+        <div class="row about-stats">
+          <div class="col-4">
+            <div class="stat-num">11AM</div>
+            <div class="stat-label">Opening time, daily</div>
+          </div>
+          <div class="col-4">
+            <div class="stat-num">8+</div>
+            <div class="stat-label">Signature menu items</div>
+          </div>
+          <div class="col-4">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Made fresh to order</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MENU ================= -->
+<section id="menu" class="menu-section">
+  <div class="container">
+    <div class="section-rule"></div>
+    <h2 class="section-heading">Our Menu</h2>
+    <p class="section-sub">A short, honest menu — everything here is made to order, nothing sits around waiting.</p>
+
+    <div class="filter-bar" role="group" aria-label="Filter menu items">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="veg">Veg</button>
+      <button class="filter-btn" data-filter="nonveg">Non-Veg</button>
+      <button class="filter-btn" data-filter="beverages">Beverages</button>
+    </div>
+
+    <div class="row g-4" id="menuGrid">
+
+      <div class="col-sm-6 col-lg-4 menu-item" data-category="veg">
+        <div class="menu-card">
+          <span><span class="tag-dot veg"></span>Veg</span>
+          <h3 class="item-name">Paneer Tikka Pizza</h3>
+          <p class="item-desc">Smoky tandoori paneer, peppers and onions over a tangy tomato base.</p>
+          <div class="item-foot">
+            <span class="item-price">₹279</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4 menu-item" data-category="nonveg">
+        <div class="menu-card">
+          <span><span class="tag-dot nonveg"></span>Non-Veg</span>
+          <h3 class="item-name">Barbeque Chicken Pizza</h3>
+          <p class="item-desc">Shredded BBQ chicken, red onions and a smoky barbeque drizzle.</p>
+          <div class="item-foot">
+            <span class="item-price">₹329</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4 menu-item" data-category="veg">
+        <div class="menu-card">
+          <span><span class="tag-dot veg"></span>Veg</span>
+          <h3 class="item-name">Farm Choice Pizza</h3>
+          <p class="item-desc">Loaded with capsicum, mushroom, corn, olives and baby corn.</p>
+          <div class="item-foot">
+            <span class="item-price">₹269</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4 menu-item" data-category="veg">
+        <div class="menu-card">
+          <span><span class="tag-dot veg"></span>Veg</span>
+          <h3 class="item-name">Aloo Tikki Burger</h3>
+          <p class="item-desc">Crisp spiced potato patty with fresh lettuce and house mayo.</p>
+          <div class="item-foot">
+            <span class="item-price">₹99</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4 menu-item" data-category="nonveg">
+        <div class="menu-card">
+          <span><span class="tag-dot nonveg"></span>Non-Veg</span>
+          <h3 class="item-name">Fried Chicken Burger</h3>
+          <p class="item-desc">Crunchy fried chicken fillet, pickles and smoky mayo in a soft bun.</p>
+          <div class="item-foot">
+            <span class="item-price">₹159</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4 menu-item" data-category="veg">
+        <div class="menu-card">
+          <span><span class="tag-dot veg"></span>Veg</span>
+          <h3 class="item-name">Veg Penne Arabiata Pasta</h3>
+          <p class="item-desc">Penne tossed in a spicy tomato-basil arabiata sauce.</p>
+          <div class="item-foot">
+            <span class="item-price">₹199</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4 menu-item" data-category="veg">
+        <div class="menu-card">
+          <span><span class="tag-dot veg"></span>Veg</span>
+          <h3 class="item-name">Garlic Bread with Cheese</h3>
+          <p class="item-desc">Toasted baguette, roasted garlic butter and melted mozzarella.</p>
+          <div class="item-foot">
+            <span class="item-price">₹149</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4 menu-item" data-category="beverages">
+        <div class="menu-card">
+          <span><span class="tag-dot bev"></span>Beverage</span>
+          <h3 class="item-name">Strawberry Mojito</h3>
+          <p class="item-desc">Fresh strawberry crush, mint and soda over crushed ice.</p>
+          <div class="item-foot">
+            <span class="item-price">₹129</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= RATINGS / TESTIMONIALS ================= -->
+<section class="rating-strip">
+  <div class="container">
+    <div class="rating-badge">
+      <span class="num">4.8</span>
+      <span class="stars">★★★★★</span>
+      <span class="count">from 143 Google reviews</span>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="review-card">
+          <p>Customers keep pointing out how affordable the food is without any drop in taste — the paneer tikka pizza is a repeat favorite.</p>
+          <div class="reviewer">— Google review</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="review-card">
+          <p>Several reviewers highlight how quickly orders come out, often in about ten minutes, without feeling rushed.</p>
+          <div class="reviewer">— Google review</div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="review-card">
+          <p>More than one visitor mentioned the owner personally welcoming them, calling the whole experience unusually warm for a quick-bite spot.</p>
+          <div class="reviewer">— Google review</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact" class="contact-section">
+  <div class="container">
+    <div class="section-rule"></div>
+    <h2 class="section-heading">Visit or Order</h2>
+
+    <div class="row g-5 mt-2">
+      <div class="col-lg-5">
+        <div class="info-line">
+          <div class="ic">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16"><path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg>
+          </div>
+          <div class="txt">Shop 9, Plot 42, Royal Plaza, Kesar Symphony,<br>Near Decent Chemistry, Sector 19, Kharghar,<br>Navi Mumbai – 410210, Maharashtra</div>
+        </div>
+        <div class="info-line">
+          <div class="ic">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/></svg>
+          </div>
+          <div class="txt"><a href="tel:+917738382027" class="text-decoration-none" style="color:inherit;">+91 77383 82027</a></div>
+        </div>
+        <div class="info-line">
+          <div class="ic">
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" fill="currentColor" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/></svg>
+          </div>
+          <div class="txt">Open daily, 11:00 AM – 12:00 AM</div>
+        </div>
+
+        <div class="ratio ratio-4x3 mt-4" style="border-radius:3px; overflow:hidden; border:1px solid var(--line);">
+          <iframe
+            src="https://maps.google.com/maps?q=The%20Pizza%20Heaven%2C%20Royal%20Plaza%2C%20Kesar%20Symphony%2C%20Sector%2019%2C%20Kharghar&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+            title="The Pizza Heaven location map">
+          </iframe>
+        </div>
+        <a href="https://maps.google.com/?cid=7631908323330491579" target="_blank" rel="noopener" class="d-inline-block mt-2" style="font-size:.88rem; color:var(--red); font-weight:600;">Get Directions →</a>
+      </div>
+
+      <div class="col-lg-7">
+        <form id="contactForm" novalidate>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" required>
+            </div>
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="col-12">
+              <label for="message" class="form-label">Message</label>
+              <textarea class="form-control" id="message" rows="4" required></textarea>
+            </div>
+            <div class="col-12 d-flex align-items-center gap-3">
+              <button type="submit" class="btn btn-send">Send Message</button>
+              <span id="formStatus"></span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  &copy; <span id="year"></span> The Pizza Heaven, Kharghar. All rights reserved.
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // ---- Menu filter ----
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const menuItems = document.querySelectorAll('.menu-item');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+
+      menuItems.forEach(item => {
+        const match = filter === 'all' || item.getAttribute('data-category') === filter;
+        if (match) {
+          item.classList.remove('menu-item-hidden');
+          item.style.animation = 'none';
+          item.offsetHeight; /* reflow to restart transition */
+          item.style.opacity = '0';
+          item.style.transform = 'translateY(8px)';
+          requestAnimationFrame(() => {
+            item.style.transition = 'opacity .3s ease, transform .3s ease';
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+          });
+        } else {
+          item.classList.add('menu-item-hidden');
+        }
+      });
+    });
+  });
+
+  // ---- Contact form (demo only, no backend) ----
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    status.textContent = 'Thanks! We\'ll get back to you shortly.';
+    status.style.color = '#5FA458';
+    form.reset();
+    setTimeout(() => { status.textContent = ''; }, 4000);
+  });
+
+  // ---- Sticky navbar shrink on scroll ----
+  const nav = document.querySelector('.navbar-pizza');
+  window.addEventListener('scroll', () => {
+    nav.style.padding = window.scrollY > 40 ? '.5rem 0' : '.9rem 0';
+  });
+</script>
+
+</body>
+</html>
